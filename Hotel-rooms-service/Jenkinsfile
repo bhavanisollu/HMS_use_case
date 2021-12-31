@@ -8,7 +8,7 @@ pipeline{
         stage('Build Maven') {
             steps{
                 //checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/AlekhyaKaligotla/Hotel-Booking-System.git']]])
-                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Hotel-rooms-service']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/AlekhyaKaligotla/Hotel-Booking-System.git']]])
+                checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'Hotel-rooms-service']], submoduleCfg: [], userRemoteConfigs: [[url: 'https://github.com/bhavanisollu/HMS_use_case.git']]])
             
                 bat "mvn -Dmaven.test.failure.ignore=true package"    
             }
