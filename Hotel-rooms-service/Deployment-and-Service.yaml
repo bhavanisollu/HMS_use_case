@@ -1,0 +1,50 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata : 
+  name : Hotel-room-service-deployment
+  labels :
+    app : hotel-room-service
+spec :
+  replicas : 1
+  selector : 
+    matchLabels :
+      app : hotel-room-service
+  template :
+    metadata:
+      labels:
+        app : hotel-room-service
+    spec:
+      containers:
+      - name : hotel-room-service-pod
+        image : bhavani005/HotelRoomService
+        ports :
+        - containerPort : 8088
+#      imagePullSecrets :
+ #     - name : demo-secret
+        
+#         env :
+#         - name : DOCKERHUB_USERNAME
+#           valueFrom :
+#             secretKeyRef :
+#               name : demo-secret 
+#               key : username
+#         - name : DOCKERHUB_PASSWORD
+#           valueFrom :
+#             secretKeyRef :
+#               name : demo-secret 
+#               key : password
+---
+apiVersion : v1
+kind : Service
+metadata:
+  name : hotel-room-service
+spec:
+  selector :
+    app : hotel-room-service
+  ports :
+    - protocol : TCP 
+      port : 8082
+      targetPort : 8088
+      nodePort : 30105
+  type : NodePort
+  
