@@ -17,7 +17,7 @@ pipeline{
         stage('Build Docker Image') {
             steps {
                 script {
-                  bat 'docker build -t bhavani005/hotel-room-service .'
+                  bat 'docker build -t bhavani005/hotel-room-service Hotel-rooms-service/'
                 }
             }
         }
@@ -38,11 +38,11 @@ pipeline{
                     
                     try{
                     //bat 'kubectl create secret generic demo-secret --from-file=.dockerconfigjson=config.json --type kubernetes.io/dockerconfigjson'
-                    bat 'kubectl apply -f Deployment-and-Service.yaml'
+                    bat 'kubectl apply -f Hotel-rooms-service/Deployment-and-Service.yaml'
                     }
                     catch(error){
                    // bat 'kubectl create -f secret.yaml'
-                    bat 'kubectl create -f Deployment-and-Service.yaml'
+                    bat 'kubectl create -f Hotel-rooms-service/Deployment-and-Service.yaml'
                     }  
                 }
             }
