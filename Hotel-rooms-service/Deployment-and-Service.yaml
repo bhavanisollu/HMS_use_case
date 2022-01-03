@@ -1,7 +1,7 @@
 apiVersion : apps/v1
 kind : Deployment
 metadata : 
-  name : Hotel-room-service-deployment
+  name : hotel-room-service-deployment
   labels :
     app : hotel-room-service
 spec :
