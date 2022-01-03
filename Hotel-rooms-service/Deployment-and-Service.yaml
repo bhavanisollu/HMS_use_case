@@ -16,7 +16,7 @@ spec :
     spec:
       containers:
       - name : hotel-room-service-pod
-        image : bhavani005/HotelRoomService
+        image : bhavani005/hotel-room-service
         ports :
         - containerPort : 8088
 #      imagePullSecrets :
