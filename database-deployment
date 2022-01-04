@@ -1,0 +1,49 @@
+apiVersion : apps/v1
+kind : Deployment
+metadata : 
+  name : database-deployment
+  labels :
+    app : database-pod
+spec :
+  replicas : 1
+  selector : 
+    matchLabels :
+      app : database-pod
+  template :
+    metadata:
+      labels:database-pod
+    spec:
+      containers:
+      - name : oracle-db
+        image : oraclelinux:8
+        ports :
+        - containerPort : 8087
+#      imagePullSecrets :
+ #     - name : demo-secret
+        
+#         env :
+#         - name : DOCKERHUB_USERNAME
+#           valueFrom :
+#             secretKeyRef :
+#               name : demo-secret 
+#               key : username
+#         - name : DOCKERHUB_PASSWORD
+#           valueFrom :
+#             secretKeyRef :
+#               name : demo-secret 
+#               key : password
+---
+apiVersion : v1
+kind : Service
+metadata:
+  name : database-service
+spec:
+  selector :
+    app : database-service
+  ports :
+    - protocol : TCP 
+      port : 8090
+      targetPort : 8088
+      nodePort : 30105
+  type : NodePort
+  
